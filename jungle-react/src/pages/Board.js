@@ -19,8 +19,8 @@ const Board = ()=> {
   
   
   useEffect(() => {
-    getData();
-  },[]);
+    getData(param.id);
+  },[param]);
 
   useEffect(()=>{
     if (editTitle===""){
@@ -37,8 +37,9 @@ const Board = ()=> {
     }
   };
 
-  function getData(){
-    fetch(`https://week13-yi5g.vercel.app/posts/${param.id}`)
+  function getData(data){
+    const id = data.id
+    fetch(`https://week13-yi5g.vercel.app/posts/${id}`)
     .then((response) => response.json())
     .then((data) => {
       setData(data);
@@ -52,6 +53,7 @@ const Board = ()=> {
     })
     .catch((error) => console.error('게시물 가져오기 실패', error));
   }
+  
   const handelEditSave = (data) => {
     if (!LimitStr()){
       return (alert("제목을 10자 이상 기입해주세요!!"))
