@@ -32,7 +32,7 @@ const Login = () => {
       })
       .then((data) => {
         console.log(data);
-        localStorage.setItem("login", data.accessToken);
+        localStorage.setItem("login",data);
         setTokenAtom(true);
         navigate(from);
       })
