@@ -28,8 +28,6 @@ const Login = () => {
       .then((res) => {
         if (res.ok) {
           return res.json();
-        } else {
-          throw new Error('로그인 실패');
         }
       })
       .then((data) => {
