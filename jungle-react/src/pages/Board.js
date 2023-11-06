@@ -1,6 +1,7 @@
 import React ,{ useEffect, useState }from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+
 const Board = ()=> {
   const navigate = useNavigate();
   const param = useParams();
@@ -19,7 +20,19 @@ const Board = ()=> {
   
   
   useEffect(() => {
-    getData(param.id);
+    fetch(`https://week13-yi5g.vercel.app/posts/${param.id}`)
+    .then((response) => response.json())
+    .then((data) => {
+      setData(data);
+      setEditTitle(data.title);
+      setEditBody(data.body);
+      if (data.title !== ""){
+        setEdit(false);
+      } else {
+        setEdit(true);
+      };
+    })
+    .catch((error) => console.error('게시물 가져오기 실패', error));
   },[param]);
 
   useEffect(()=>{
@@ -37,9 +50,8 @@ const Board = ()=> {
     }
   };
 
-  function getData(data){
-    const id = data.id
-    fetch(`https://week13-yi5g.vercel.app/posts/${id}`)
+  function getData(){
+    fetch(`https://week13-yi5g.vercel.app/posts/${param.id}`)
     .then((response) => response.json())
     .then((data) => {
       setData(data);
@@ -56,7 +68,7 @@ const Board = ()=> {
   
   const handelEditSave = (data) => {
     if (!LimitStr()){
-      return (alert("제목을 10자 이상 기입해주세요!!"))
+      return console.log()
     } 
     const newData = {
       title: editTitle,
