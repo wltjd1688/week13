@@ -43,7 +43,7 @@ const Board = ()=> {
 
   useEffect(()=>{
     getData()
-  },[edit])
+  },[])
 
   const LimitStr = ()=>{
     const NumTitle = editTitle;
