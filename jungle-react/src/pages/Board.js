@@ -41,6 +41,10 @@ const Board = ()=> {
     }
   },[])
 
+  useEffect(()=>{
+    
+  },[edit])
+
   const LimitStr = ()=>{
     const NumTitle = editTitle;
     if (NumTitle.length > 10){
