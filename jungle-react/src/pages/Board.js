@@ -18,15 +18,24 @@ const Board = ()=> {
   
   useEffect(() => {
     getData();
-  }, []);
+  },[]);
+
+  const LimitStr = ()=>{
+    const NumTitle = editTitle;
+    if (NumTitle.length > 10){
+      return true;
+    } else{
+      return false;
+    }
+  };
 
   function getData(){
     fetch(`http://localhost:4004/posts/${param.id}`)
     .then((response) => response.json())
     .then((data) => {
-      setData(data)
-      setEditBody(data.body)
-      setEditTitle(data.title)
+      setData(data);
+      setEditTitle(data.title);
+      setEditBody(data.body);
       if (data.title !== ""){
         setEdit(false);
       } else {
@@ -36,6 +45,9 @@ const Board = ()=> {
     .catch((error) => console.error('게시물 가져오기 실패', error));
   }
   const handelEditSave = (data) => {
+    if (!LimitStr()){
+      return (alert("제목을 10자 이상 기입해주세요!!"))
+    } 
     const newData = {
       title: editTitle,
       body: editBody,
@@ -47,7 +59,7 @@ const Board = ()=> {
       headers:{
         'Content-Type':'application/json',
       },
-      body: JSON.stringify(newData),
+      body: JSON.stringify(newData), 
     })
       .then((response)=> {
         if(response.ok) {
@@ -63,7 +75,8 @@ const Board = ()=> {
       setEdit(false)
   }
 
-  const handelDelete = (data) => {
+  const handelDelete = (e) => {
+    e.preventDefault();
     fetch(`http://localhost:4004/posts/${param.id}`,{
       method: 'DELETE',
       headers:{
@@ -88,15 +101,15 @@ const Board = ()=> {
         <div className=' flex flex-col mx-5'>
           <div className=" px-3 py-1 border-2 m-5">
             <label htmlFor="title">제목 </label>
-            <input className="w-full" onChange={(e)=>{setEditTitle(e.target.value)}} type="text" name="title" id="title" value={editTitle}/>
+            <input className="w-full" onChange={(e)=>{setEditTitle(e.target.value,e)}} type="text" name="title" id="title" value={editTitle}/>
           </div>
           <div className=" px-3 py-1 border-2 mx-5">
             <label htmlFor="content">내용 </label>
             <textarea className='w-full h-[35vh] ' onChange={(e)=>{setEditBody(e.target.value)}} type="text" name="content" id="content" value={editBody}></textarea>
           </div>
           <div className=' flex justify-end mx-5 gap-3'>
-            <button className="mt-3 px-8 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300" onClick={()=>{handelEditSave(data)}}>완료</button>
-            <button className="mt-3 px-8 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300" onClick={()=>{handelDelete()}}>삭제</button>
+            <button className="mt-3 px-8 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300  disabled:bg-slate-300 disabled:text-slate-50" onClick={(e)=>{handelEditSave(data,e)}} disabled={(editTitle && editBody.length >=0)? false:true}>완료</button>
+            <button className="mt-3 px-8 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300" onClick={(e)=>{handelDelete(e)}}>삭제</button>
           </div>
         </div>):(
           data ? (
@@ -112,7 +125,7 @@ const Board = ()=> {
                 </div>
                 <div className=' flex justify-end mx-5 gap-3'>
                     <button className="mt-3 px-8 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300" onClick={()=>{setEdit(true)}}>수정</button>
-                    <button className="mt-3 px-8 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300" onClick={()=>{handelDelete()}}>삭제</button>
+                    <button className="mt-3 px-8 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300" onClick={(e)=>{handelDelete(e)}}>삭제</button>
                 </div>
               </div>
             </>

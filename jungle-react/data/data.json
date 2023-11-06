@@ -1,13 +1,6 @@
 {
   "posts": [
     {
-      "id": 4,
-      "title": "aaaabvbvbbb",
-      "body": "aaasdfasdfasdfasb",
-      "owner": "Kim",
-      "date": "2023-11-7"
-    },
-    {
       "id": 7,
       "title": "",
       "body": "",
@@ -48,6 +41,27 @@
       "owner": "Kim",
       "date": "",
       "id": 12
+    },
+    {
+      "title": "",
+      "body": "",
+      "owner": "Kim",
+      "date": "",
+      "id": 13
+    },
+    {
+      "title": "adsfadsfadsasdf",
+      "body": "ㅁㄴㅇㄹㅁㅇㄴㅎㅁㄴㅇㅎㅌㅋㅊㅍㅌㅊㅍ",
+      "owner": "Kim",
+      "date": "2023-11-7",
+      "id": 14
+    },
+    {
+      "title": "",
+      "body": "",
+      "owner": "Kim",
+      "date": "",
+      "id": 15
     }
   ],
   "users": [

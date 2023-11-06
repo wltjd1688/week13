@@ -1,18 +1,21 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "title": "",
+      "body": "",
+      "owner": "Kim",
+      "date": "",
+      "id": 1
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "title": "asdfasdijf;iasdjfjalsdjfjadslijfajiflj",
+      "body": "a;lsidj;fliajsdfinvjasidfjnvaisjnfvajsdifjvnasdvfnaj",
+      "owner": "Kim",
+      "date": "2023-11-7",
+      "id": 2
     }
   ],
+  "comments": [],
   "profile": {
     "name": "typicode"
   }

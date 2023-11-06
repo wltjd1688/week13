@@ -29,7 +29,8 @@ const Boards = () => {
     return lastBoard.id;
   }
   
-  const handelNewData = (data) =>{
+  const handelNewData = (data,e) =>{
+    e.preventDefault();
     const newId = checkBoardNum() + 1;
     const emtyNewData = {
       title: "",
@@ -54,9 +55,8 @@ const Boards = () => {
   return (
     <div>
       <div className=' flex mx-auto flex-col w-4/5'>
-        <div className="m-3 px-3 py-1 border-2 inline-grid">
-          <label htmlFor="title-find">제목 검색 </label>
-          <input className="w-full" onChange={()=>{}} type="text" name="title-find" id="title-find"/>
+        <div className="m-3 px-3 py-1 border-2 inline-grid h-24 text-center pt-7 text-4xl">
+          <h1>게시판</h1>
         </div>
         {data? (
           <div>
@@ -83,7 +83,7 @@ const Boards = () => {
               </tbody>
             </table>
             <div className='flex justify-end'>
-              <button className="mt-3 px-8 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300" onClick={()=>{handelNewData(data)}}>새글쓰기</button>
+              <button className="mt-3 px-8 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300" onClick={(e)=>{handelNewData(data,e)}}>새글쓰기</button>
             </div>
           </div>
           ):(
