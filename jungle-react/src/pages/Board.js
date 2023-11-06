@@ -38,7 +38,7 @@ const Board = ()=> {
   };
 
   function getData(){
-    fetch(`http://week13-yi5g.vercel.app/posts/${param.id}`)
+    fetch(`https://week13-yi5g.vercel.app/posts/${param.id}`)
     .then((response) => response.json())
     .then((data) => {
       setData(data);
