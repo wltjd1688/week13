@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.layout{
+  @apply  px-10 border-b-2 h-10vh flex items-center text-xl
+}
+
+.min-h-85vh{
+  min-height: 86vh;
+  height:100%;
+}
+
+.h-10vh{
+  height: 8vh;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse:collapse;
+  padding:3px;
+}
