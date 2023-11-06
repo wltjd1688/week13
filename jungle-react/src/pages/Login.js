@@ -1,6 +1,6 @@
 import React,{ useState } from "react";
-// import { useSetRecoilState } from "recoil";
-// import { TokenAtom } from "recoiil/atom";
+import { useSetRecoilState } from "recoil";
+import { TokenAtom } from "recoiil/atom";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import '../index.css';
 
@@ -8,11 +8,13 @@ const Login = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const setTokenCheck = useSetRecoilState(TokenAtom)
   const location = useLocation();
   const from = location?.state?.redirectedFrom?.pathname || '/'
 
   const handleLogin = (e) => {
     e.preventDefault();
+    
     fetch("https://week13-yi5g.vercel.app/users",{
       method: 'POST',
       body: JSON.stringify({
@@ -23,6 +25,7 @@ const Login = () => {
     .then((res)=>{
       console.log(res)
       localStorage.setItem("login",res.accessToken)
+      setTokenCheck(true);
       navigate(from);
     })
     .catch((error)=>{
