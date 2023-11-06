@@ -62,7 +62,7 @@ const Board = ()=> {
       owner: 'Kim',
       date: currentDate
     }
-    fetch(`http://week13-yi5g.vercel.app/posts/${param.id}`,{
+    fetch(`https://week13-yi5g.vercel.app/posts/${param.id}`,{
       method: 'PATCH',
       headers:{
         'Content-Type':'application/json',
@@ -89,7 +89,7 @@ const Board = ()=> {
 
   const handelDelete = (e) => {
     e.preventDefault();
-    fetch(`http://week13-yi5g.vercel.app/posts/${param.id}`,{
+    fetch(`https://week13-yi5g.vercel.app/posts/${param.id}`,{
       method: 'DELETE',
       headers:{
         'Content-Type':'application/json',
