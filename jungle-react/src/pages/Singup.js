@@ -19,10 +19,10 @@ const Singup = () => {
       headers: {
         'Content-Type':'application/json',
       },
-      body: JSON.stringify({
+      body: {
         email:id,
         password:password
-      }),
+      },
     })
       .then((res)=>{
         console.log(res)

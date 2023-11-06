@@ -15,10 +15,10 @@ const Login = () => {
     e.preventDefault();
     fetch("https://week13-yi5g.vercel.app/users",{
       method: 'POST',
-      body: JSON.stringify({
+      body: {
         email:id,
         password:password
-      }),
+      },
     })
     .then((res)=>{
       console.log(res)
