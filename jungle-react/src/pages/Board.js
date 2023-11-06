@@ -78,6 +78,9 @@ const Board = ()=> {
     }
     fetch(`https://week13-yi5g.vercel.app/posts/${param.id}`,{
       method: 'PATCH',
+      headers:{
+        'Content-Type':'application/json',
+      },
       body: JSON.stringify(newData), 
     })
       .then((response)=> {
