@@ -50,7 +50,7 @@ const Login = () => {
       </div>
       <div className=" px-3 py-1 w-full border-2 whitespace-nowrap inline-grid my-3">
         <label htmlFor="pw">pw</label>
-        <input className="outline-none hover:bg-slate-100" onChange={(e)=>{setPassword(e.target.value)}} type="text" name="pw" id="pw" placeholder="password"/>
+        <input type='password' className="outline-none hover:bg-slate-100" onChange={(e)=>{setPassword(e.target.value)}} type="text" name="pw" id="pw" placeholder="password"/>
       </div>
       <div>
         <Link className=" text-right hover:text-slate-400" to={'/singup'}><p>회원가입</p></Link>
