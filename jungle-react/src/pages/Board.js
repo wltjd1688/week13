@@ -38,7 +38,7 @@ const Board = ()=> {
   };
 
   function getData(){
-    fetch(`http://localhost:4004/posts/${param.id}`)
+    fetch(`http://week13-yi5g.vercel.app/posts/${param.id}`)
     .then((response) => response.json())
     .then((data) => {
       setData(data);
@@ -62,7 +62,7 @@ const Board = ()=> {
       owner: 'Kim',
       date: currentDate
     }
-    fetch(`http://localhost:4004/posts/${param.id}`,{
+    fetch(`http://week13-yi5g.vercel.app/posts/${param.id}`,{
       method: 'PATCH',
       headers:{
         'Content-Type':'application/json',
@@ -89,7 +89,7 @@ const Board = ()=> {
 
   const handelDelete = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:4004/posts/${param.id}`,{
+    fetch(`http://week13-yi5g.vercel.app/posts/${param.id}`,{
       method: 'DELETE',
       headers:{
         'Content-Type':'application/json',

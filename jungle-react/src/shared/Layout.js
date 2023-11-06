@@ -9,9 +9,9 @@ const Header = () => {
 
   return (
     <div className="layout justify-between">
-      <h2><Link to={"/"}>This is Header</Link></h2>
+      <h2><Link to={"/"}>React 공부하기</Link></h2>
       {CheckLogin? (
-        <p>{}</p>
+        <p>{localStorage.getItem(JSON.)}</p>
       ):(<h2><Link to={"/login"}>Login</Link></h2>)}
     </div>
   );

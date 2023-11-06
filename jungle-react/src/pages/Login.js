@@ -13,7 +13,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    fetch("http://localhost:4004/users",{
+    fetch("http://week13-yi5g.vercel.app/users",{
       method: 'POST',
       body: JSON.stringify({
         email:id,

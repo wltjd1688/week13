@@ -11,7 +11,7 @@ const Boards = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4004/posts")
+    fetch("http://week13-yi5g.vercel.app/posts")
       .then((response) => {
         return response.json();
       })
@@ -38,7 +38,7 @@ const Boards = () => {
       owner: 'Kim',
       date: ""
     }
-    fetch(`http://localhost:4004/posts`,{
+    fetch(`http://week13-yi5g.vercel.app/posts`,{
       method: 'POST',
       headers:{
         'Content-Type':'application/json',

@@ -14,7 +14,7 @@ const Singup = () => {
 
   const handleSingUp = (e) => {
     e.preventDefault();
-    fetch("http://localhost:4004/register",{
+    fetch("http://week13-yi5g.vercel.app/register",{
       method: 'POST',
       headers: {
         'Content-Type':'application/json',
