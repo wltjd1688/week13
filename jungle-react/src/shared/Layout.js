@@ -11,7 +11,7 @@ const Header = () => {
     <div className="layout justify-between">
       <h2><Link to={"/"}>React 공부하기</Link></h2>
       {CheckLogin? (
-        <p>{localStorage.getItem(JSON.)}</p>
+        <p>로그인함</p>
       ):(<h2><Link to={"/login"}>Login</Link></h2>)}
     </div>
   );
