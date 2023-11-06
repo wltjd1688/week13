@@ -12,26 +12,33 @@ const Login = () => {
   const location = useLocation();
   const from = location?.state?.redirectedFrom?.pathname || '/'
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    
-    fetch("https://week13-yi5g.vercel.app/users",{
-      method: 'POST',
-      body: JSON.stringify({
-        id:id,
-        password:password
-      }),
-    })
-    .then((res)=>{
-      console.log(res)
-      localStorage.setItem("login",res.accessToken)
-      setTokenCheck(true);
-      navigate(from);
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
-  }
+  const handleLogin = async() => {
+    try{
+      const response = fetch("https://week13-yi5g.vercel.app/users",{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email:id,
+          password:password
+        },)});
+        if (response.ok) {
+          const data = await response.json();
+          console.log('로그인 성공',data);
+          const token = data.token;
+          if (token){
+            setTokenCheck(true);
+          }
+          navigate(from)
+        } else {
+          const errorData = await response.json();
+          console.log('로그인 실패', errorData);
+        }
+    } catch(error) {
+      console.error('로그인 오류:', error);
+    }
+  };
 
   return(
     <div className="relative p-8 border-2 rounded-xl mt-24 mx-auto w-5/12 outline-none">
