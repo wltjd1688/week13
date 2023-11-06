@@ -1,6 +1,6 @@
 import React,{ useState } from "react";
-import { useSetRecoilState } from "recoil";
-import { TokenAtom } from "recoiil/atom";
+// import { useSetRecoilState } from "recoil";
+// import { TokenAtom } from "recoiil/atom";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import '../index.css';
 
@@ -8,37 +8,27 @@ const Login = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const setTokenCheck = useSetRecoilState(TokenAtom)
   const location = useLocation();
   const from = location?.state?.redirectedFrom?.pathname || '/'
 
-  const handleLogin = async() => {
-    try{
-      const response = fetch("https://week13-yi5g.vercel.app/users",{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email:id,
-          password:password
-        },)});
-        if (response.ok) {
-          const data = await response.json();
-          console.log('로그인 성공',data);
-          const token = data.token;
-          if (token){
-            setTokenCheck(true);
-          }
-          navigate(from)
-        } else {
-          const errorData = await response.json();
-          console.log('로그인 실패', errorData);
-        }
-    } catch(error) {
-      console.error('로그인 오류:', error);
-    }
-  };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    fetch("http://week13-yi5g.vercel.app/users",{
+      method: 'POST',
+      body: JSON.stringify({
+        email:id,
+        password:password
+      }),
+    })
+    .then((res)=>{
+      console.log(res)
+      localStorage.setItem("login",res.accessToken)
+      navigate(from);
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
 
   return(
     <div className="relative p-8 border-2 rounded-xl mt-24 mx-auto w-5/12 outline-none">
@@ -55,7 +45,7 @@ const Login = () => {
         <Link className=" text-right hover:text-slate-400" to={'/singup'}><p>회원가입</p></Link>
       </div>
       <div className="flex justify-center">
-        <button  onClick={handleLogin()} type='login' className=" mt-3 px-6 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300">로그인</button>
+        <button  onClick={handleLogin} type='login' className=" mt-3 px-6 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300">로그인</button>
       </div>
     </div>
   )
