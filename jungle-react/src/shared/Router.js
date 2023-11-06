@@ -16,7 +16,7 @@ const Router = () => {
         <Route path="singup" element={<Singup />} />
         <Route element={<Layout/>}>
           <Route path="/" element={<Home />} />
-          <Route element={<ProtectedRoute />}>
+          <Route element={<ProtectedRoute></ProtectedRoute>}>
             <Route path="boards" element={<Boards />} />
             <Route path="boards/:id" element={<Board />} />
           </Route>

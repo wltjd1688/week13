@@ -1,10 +1,11 @@
 import React from "react";
 import '../index.css'
 import { Link, Outlet } from "react-router-dom";
-import ProtectedRoute from "components/LoginCheck";
+import { TokenAtom } from "recoiil/atom";
+import { useRecoilValue } from "recoil";
 
 const Header = () => {
-  const CheckLogin = ProtectedRoute();
+  const CheckLogin = useRecoilValue(TokenAtom);
 
   return (
     <div className="layout justify-between">

@@ -1,12 +1,12 @@
-import React,{ useState, axios } from "react";
-import { useSetRecoilState } from "recoil";
-import { TokenAtom } from "recoiil/atom";
+import React,{ useState } from "react";
+// import { useSetRecoilState } from "recoil";
+// import { TokenAtom } from "recoiil/atom";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Singup = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
-  const setAccessToken = useSetRecoilState(TokenAtom);
+  // const setAccessToken = useSetRecoilState(TokenAtom);
   const navigate = useNavigate();
   const location = useLocation();
   console.log(location)
@@ -14,11 +14,23 @@ const Singup = () => {
 
   const handleSingUp = (e) => {
     e.preventDefault();
-    axios.post('/singup',{id:id,pw:password}).then((res)=>{
-      console.oog(res.data)
-      setAccessToken(res.data.setAccessToken)
-      navigate(from);
+    fetch("http://localhost:4004/register",{
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/json',
+      },
+      body: JSON.stringify({
+        email:id,
+        password:password
+      }),
     })
+      .then((res)=>{
+        console.log(res)
+        navigate(from);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
   
   

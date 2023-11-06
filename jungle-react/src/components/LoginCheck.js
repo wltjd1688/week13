@@ -1,10 +1,10 @@
 import React from "react"
 import { Navigate, Outlet, useLocation } from "react-router-dom"
-import { useRecoilValue } from "recoil"
-import { isLoginSelector } from "recoiil/atom"
+// import { useRecoilValue } from "recoil"
+// import { TokenAtom } from "recoiil/atom"
 
 const ProtectedRoute = ()=>{
-  // const isLogin = useRecoilValue(isLoginSelector)
+  // const isLogin = useRecoilValue(TokenAtom)
   const isLogin = true;
   const currentLocation = useLocation();
   // if(isLogin){

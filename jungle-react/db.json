@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "id": "test",
+      "password": "test"
+    },
+    {
+      "id": "qnL8yIo"
+    },
+    {
+      "id": "RTwqRyH"
+    },
+    {
+      "id": "q_o2mMS"
+    },
+    {
+      "id": "W650Zd3"
+    },
+    {
+      "id": "tD3Dv0j"
+    },
+    {
+      "id": "EyQLMLH"
+    },
+    {
+      "id": "p1CFbAZ"
+    },
+    {
+      "id": "2JV_6Mh"
+    }
+  ],
+  "posts": [
+    {
+      "title": "daf/vjasd;ijf;nvajsdifjn;ivajsifjn;avsj;fijnasvldjfajvdsjfjvja",
+      "body": "asli;djfnavjsdfijalvsdjfliajvsdfjna;vilsdnfajvnsldjfvasjndlfjvalisdfljvalsdifjnlvasdjflivajnsd;lifj;vasjdfvadsjfnv",
+      "owner": "Kim",
+      "date": "2023-11-7",
+      "id": 1
+    }
+  ],
+  "comments": [],
+  "profile": {}
+}

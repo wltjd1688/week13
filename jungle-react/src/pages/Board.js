@@ -15,10 +15,18 @@ const Board = ()=> {
   const [edit, setEdit] = useState(true);
   const [editTitle,setEditTitle] = useState('');
   const [editBody,setEditBody] = useState('');
+  const [isNew, setIsNew] = useState(true);
+  
   
   useEffect(() => {
     getData();
   },[]);
+
+  useEffect(()=>{
+    if (editTitle===""){
+      setIsNew(false)
+    }
+  },[])
 
   const LimitStr = ()=>{
     const NumTitle = editTitle;
@@ -65,7 +73,11 @@ const Board = ()=> {
         if(response.ok) {
           setData(data);
           getData()
-          alert("수정완료!")
+          if (isNew){
+            alert("추가완료!");
+          } else {
+            alert("수정완료!");
+          }
           return response.json();
         }  else {
           throw new Error('POST 요청 실패');
@@ -101,14 +113,14 @@ const Board = ()=> {
         <div className=' flex flex-col mx-5'>
           <div className=" px-3 py-1 border-2 m-5">
             <label htmlFor="title">제목 </label>
-            <input className="w-full" onChange={(e)=>{setEditTitle(e.target.value,e)}} type="text" name="title" id="title" value={editTitle}/>
+            <input className="w-full" onChange={(e)=>{setEditTitle(e.target.value)}} type="text" name="title" id="title" value={editTitle}/>
           </div>
           <div className=" px-3 py-1 border-2 mx-5">
             <label htmlFor="content">내용 </label>
             <textarea className='w-full h-[35vh] ' onChange={(e)=>{setEditBody(e.target.value)}} type="text" name="content" id="content" value={editBody}></textarea>
           </div>
           <div className=' flex justify-end mx-5 gap-3'>
-            <button className="mt-3 px-8 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300  disabled:bg-slate-300 disabled:text-slate-50" onClick={(e)=>{handelEditSave(data,e)}} disabled={(editTitle && editBody.length >=0)? false:true}>완료</button>
+            <button className="mt-3 px-8 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300  disabled:bg-slate-300 disabled:text-slate-50" onClick={(e)=>{handelEditSave(data,e)}} disabled={(editTitle === '' || editBody === '')}>완료</button>
             <button className="mt-3 px-8 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300" onClick={(e)=>{handelDelete(e)}}>삭제</button>
           </div>
         </div>):(
