@@ -1,8 +1,8 @@
 import React,{ useState } from "react";
-// import { useSetRecoilState } from "recoil";
-// import { TokenAtom } from "recoiil/atom";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import '../index.css';
+import { TokenAtom } from "recoiil/atom";
+import { useRecoilState } from "recoil";
 
 const Login = () => {
   const [id, setId] = useState('');
@@ -10,25 +10,38 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.redirectedFrom?.pathname || '/'
+  const setTokenAtom = useRecoilState(TokenAtom)
 
   const handleLogin = (e) => {
     e.preventDefault();
-    fetch("https://week13-yi5g.vercel.app/users",{
+    const requestBody = {
+      email: id,
+      password: password,
+    };
+    fetch("https://week13-yi5g.vercel.app/users", {
       method: 'POST',
-      body: {
-        email:id,
-        password:password
+      headers: {
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify(requestBody),
     })
-    .then((res)=>{
-      console.log(res)
-      localStorage.setItem("login",res.accessToken)
-      navigate(from);
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
-  }
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error('로그인 실패');
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("login", data.accessToken);
+        setTokenAtom(true);
+        navigate(from);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return(
     <div className="relative p-8 border-2 rounded-xl mt-24 mx-auto w-5/12 outline-none">
