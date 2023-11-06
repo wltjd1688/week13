@@ -39,7 +39,7 @@ const Board = ()=> {
     if (editTitle===""){
       setIsNew(false)
     }
-  },[param])
+  },[])
 
   const LimitStr = ()=>{
     const NumTitle = editTitle;
