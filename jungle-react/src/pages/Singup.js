@@ -12,9 +12,9 @@ const Singup = () => {
   console.log(location)
   const from = location?.state?.redirectedFrom?.pathname || '/'
 
-  const handleLogin = (e) => {
+  const handleSingUp = (e) => {
     e.preventDefault();
-    axios.post('/login',{id:id,pw:password}).then((res)=>{
+    axios.post('/singup',{id:id,pw:password}).then((res)=>{
       console.oog(res.data)
       setAccessToken(res.data.setAccessToken)
       navigate(from);
@@ -24,22 +24,22 @@ const Singup = () => {
   
 
   return(
-    <div className=" p-8 border-2 mt-24 mx-auto w-5/12 flex items-center justify-center flex-col ">
-      <p className=" text-3xl">회원가입</p>
-      <div className=" px-3 py-1 w-10/12 border-2 whitespace-nowrap inline-grid m-3">
-        <label htmlFor="id">username</label>
-        <input onChange={(e)=>{setId(e.target.value)}} type="text" name="id" id="id" placeholder="Id"/>
+    <div className="relative p-8 border-2 rounded-xl mt-24 mx-auto w-5/12 outline-none">
+      <p className=" text-center text-3xl">로그인</p>
+      <div className=" px-3 py-1 w-full border-2 whitespace-nowrap inline-grid my-3">
+        <label htmlFor="id">id</label>
+        <input className="outline-none hover:bg-slate-100" onChange={(e)=>{setId(e.target.value)}} type="text" name="id" id="id" placeholder="Id"/>
       </div>
-      <div className=" px-3 py-1 w-10/12 border-2 whitespace-nowrap inline-grid m-3">
+      <div className=" px-3 py-1 w-full border-2 whitespace-nowrap inline-grid my-3">
         <label htmlFor="pw">password</label>
-        <input onChange={(e)=>{setPassword(e.target.value)}} type="text" name="pw" id="pw" placeholder="password"/>
+        <input className="outline-none hover:bg-slate-100" onChange={(e)=>{setPassword(e.target.value)}} type="text" name="pw" id="pw" placeholder="password"/>
       </div>
-      <div className=" px-3 py-1 w-10/12 border-2 whitespace-nowrap inline-grid m-3">
-        <label htmlFor="pw">confirm password</label>
-        <input onChange={(e)=>{setPassword(e.target.value)}} type="text" name="pw" id="pw" placeholder="password"/>
+      <div className=" px-3 py-1 w-full border-2 whitespace-nowrap inline-grid my-3">
+        <label htmlFor="cpw">confirm password</label>
+        <input className="outline-none hover:bg-slate-100" onChange={(e)=>{setPassword(e.target.value)}} type="text" name="cpw" id="cpw" placeholder="password"/>
       </div>
-      <div>
-        <button className="mt-3 px-8 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300" onClick={handleLogin}>버튼</button>
+      <div className="flex justify-center">
+        <button onClick={(e)=>{handleSingUp(e)}} type='login' className=" mt-3 px-6 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300">회원가입</button>
       </div>
     </div>
   )

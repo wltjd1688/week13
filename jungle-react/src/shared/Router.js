@@ -16,8 +16,8 @@ const Router = () => {
         <Route path="singup" element={<Singup />} />
         <Route element={<Layout/>}>
           <Route path="/" element={<Home />} />
-          <Route path="boards" element={<Boards />} />
           <Route element={<ProtectedRoute />}>
+            <Route path="boards" element={<Boards />} />
             <Route path="boards/:id" element={<Board />} />
           </Route>
         </Route>

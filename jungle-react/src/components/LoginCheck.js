@@ -14,7 +14,7 @@ const ProtectedRoute = ()=>{
   // }
   return (
     <>
-      {isLogin ? <Outlet/>:<Navigate to={'/login'} replace state={{redirectedFrom:currentLocation}}/>}
+      {isLogin ? <Outlet></Outlet>:<Navigate to={'/login'} replace state={{redirectedFrom:currentLocation}}/>}
     </>
   )
 }

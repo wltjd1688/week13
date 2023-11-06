@@ -20,3 +20,14 @@ table, th, td {
   border-collapse:collapse;
   padding:3px;
 }
+
+.single-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-50{
+  min-width: 50vw;
+  max-width: 50vw;
+}

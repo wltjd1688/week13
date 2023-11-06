@@ -1,7 +1,7 @@
-import React,{ useState, axios } from "react";
+import React,{ useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { TokenAtom } from "recoiil/atom";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import '../index.css';
 
 const Login = () => {
@@ -14,26 +14,31 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    axios.post('/login',{id:id,pw:password}).then((res)=>{
-      console.oog(res.data)
+    fetch('/login',{
+      method: "POSE",
+      body: {id:id,pw:password}})
+    .then((res)=>{
       setAccessToken(res.data.setAccessToken)
       navigate(from);
     })
   }
 
   return(
-    <div className=" p-8 border-2 mt-24 mx-auto w-5/12 flex items-center justify-center flex-col ">
-      <p className=" text-3xl">로그인</p>
-      <div className=" px-3 py-1 w-10/12 border-2 whitespace-nowrap inline-grid m-3">
+    <div className="relative p-8 border-2 rounded-xl mt-24 mx-auto w-5/12 outline-none">
+      <p className=" text-center text-3xl">로그인</p>
+      <div className=" px-3 py-1 w-full border-2 whitespace-nowrap inline-grid my-3">
         <label htmlFor="id">id</label>
-        <input onChange={(e)=>{setId(e.target.value)}} type="text" name="id" id="id" placeholder="Id"/>
+        <input className="outline-none hover:bg-slate-100" onChange={(e)=>{setId(e.target.value)}} type="text" name="id" id="id" placeholder="Id"/>
       </div>
-      <div className=" px-3 py-1 w-10/12 border-2 whitespace-nowrap inline-grid m-3">
+      <div className=" px-3 py-1 w-full border-2 whitespace-nowrap inline-grid my-3">
         <label htmlFor="pw">pw</label>
-        <input onChange={(e)=>{setPassword(e.target.value)}} type="text" name="pw" id="pw" placeholder="password"/>
+        <input className="outline-none hover:bg-slate-100" onChange={(e)=>{setPassword(e.target.value)}} type="text" name="pw" id="pw" placeholder="password"/>
       </div>
       <div>
-        <button type='login' className="mt-3 px-8 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300" onClick={handleLogin}>버튼</button>
+        <Link className=" text-right hover:text-slate-400" to={'/singup'}><p>회원가입</p></Link>
+      </div>
+      <div className="flex justify-center">
+        <button  onClick={(e)=>{handleLogin(e)}} type='login' className=" mt-3 px-6 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300">로그인</button>
       </div>
     </div>
   )
