@@ -33,7 +33,7 @@ const Board = ()=> {
       };
     })
     .catch((error) => console.error('게시물 가져오기 실패', error));
-  },[param,edit]);
+  },[param]);
 
   useEffect(()=>{
     if (editTitle===""){
