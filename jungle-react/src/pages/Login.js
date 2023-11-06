@@ -55,7 +55,7 @@ const Login = () => {
         <Link className=" text-right hover:text-slate-400" to={'/singup'}><p>회원가입</p></Link>
       </div>
       <div className="flex justify-center">
-        <button  onClick={handleLogin} type='login' className=" mt-3 px-6 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300">로그인</button>
+        <button  onClick={handleLogin()} type='login' className=" mt-3 px-6 py-1 rounded-md border-2 hover:bg-slate-100 active:bg-slate-300">로그인</button>
       </div>
     </div>
   )
