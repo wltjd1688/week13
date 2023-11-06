@@ -33,13 +33,13 @@ const Board = ()=> {
       };
     })
     .catch((error) => console.error('게시물 가져오기 실패', error));
-  },[param]);
+  },[param,edit]);
 
   useEffect(()=>{
     if (editTitle===""){
       setIsNew(false)
     }
-  },[])
+  },[param])
 
   const LimitStr = ()=>{
     const NumTitle = editTitle;
