@@ -18,7 +18,7 @@ const Login = () => {
     fetch("https://week13-yi5g.vercel.app/users",{
       method: 'POST',
       body: JSON.stringify({
-        email:id,
+        id:id,
         password:password
       }),
     })
