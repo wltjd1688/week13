@@ -9,7 +9,6 @@ const Singup = () => {
   // const setAccessToken = useSetRecoilState(TokenAtom);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location)
   const from = location?.state?.redirectedFrom?.pathname || '/'
 
   const handleSingUp = (e) => {

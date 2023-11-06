@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.redirectedFrom?.pathname || '/'
-  const setTokenAtom = useRecoilState(TokenAtom)
+  const [confToken, setConfToken] = useRecoilState(TokenAtom);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const Login = () => {
       })
       .then((data) => {
         localStorage.setItem("login",data);
-        setTokenAtom(true);
+        setConfToken(true);
         navigate(from);
       })
 
