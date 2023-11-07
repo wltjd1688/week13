@@ -17,23 +17,8 @@ const Board = ()=> {
   const [editTitle,setEditTitle] = useState('');
   const [editBody,setEditBody] = useState('');
   const [isNew, setIsNew] = useState(true);
+  const [tao,setTao] = useState(true)
   
-  
-  useEffect(() => {
-    fetch(`https://week13-yi5g.vercel.app/posts/${param.id}`)
-    .then((response) => response.json())
-    .then((data) => {
-      setData(data);
-      setEditTitle(data.title);
-      setEditBody(data.body);
-      if (data.title !== ""){
-        setEdit(false);
-      } else {
-        setEdit(true);
-      };
-    })
-    .catch((error) => console.error('게시물 가져오기 실패', error));
-  },[param]);
 
   useEffect(()=>{
     if (editTitle===""){
@@ -43,7 +28,7 @@ const Board = ()=> {
 
   useEffect(()=>{
     getData()
-  },[])
+  },[tao])
 
   const LimitStr = ()=>{
     const NumTitle = editTitle;
@@ -56,7 +41,10 @@ const Board = ()=> {
 
   function getData(){
     fetch(`https://week13-yi5g.vercel.app/posts/${param.id}`)
-    .then((response) => response.json())
+    .then((response) => {
+      setTao(!tao);
+      response.json();
+      )
     .then((data) => {
       setData(data);
       setEditTitle(data.title);
@@ -67,7 +55,6 @@ const Board = ()=> {
         setEdit(true);
       };
     })
-    .catch((error) => console.error('게시물 가져오기 실패', error));
   }
   
   const handelEditSave = (data) => {
@@ -96,14 +83,10 @@ const Board = ()=> {
           } else {
             alert("수정완료!");
           }
+          setEdit(false)
           return response.json();
-        }  else {
-          throw new Error('POST 요청 실패');
         }
-      })
-      .catch((error) => console.error('수정에 실패하였습니다.',error));
-      setEdit(false)    
-  }
+  })
 
   const handelDelete = (e) => {
     e.preventDefault();
@@ -119,10 +102,9 @@ const Board = ()=> {
         if(response.ok) {
           alert("삭제 성공!")
           return response.json()
-        }  else {
-          return new Error('DELETE 요청 실패');
         }
       })
+      
   }
 
   return (
