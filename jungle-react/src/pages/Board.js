@@ -44,7 +44,7 @@ const Board = ()=> {
     .then((response) => {
       setTao(!tao);
       response.json();
-      )
+    })
     .then((data) => {
       setData(data);
       setEditTitle(data.title);
