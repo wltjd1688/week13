@@ -115,9 +115,9 @@ const Board = ()=> {
     })
       .then((response)=> {
         console.log(response);
+        navigate('/boards')
         if(response.ok) {
           alert("삭제 성공!")
-          navigate('/boards')
           return response.json()
         }  else {
           return new Error('DELETE 요청 실패');
