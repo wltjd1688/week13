@@ -102,7 +102,7 @@ const Board = ()=> {
         }
       })
       .catch((error) => console.error('수정에 실패하였습니다.',error));
-      setEdit(false)
+      setEdit(false)    
   }
 
   const handelDelete = (e) => {
